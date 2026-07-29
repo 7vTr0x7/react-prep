@@ -1,10 +1,11 @@
-import ProgressBar from "./components/ProgressBar/ProgressBar";
+import StopWatch from "./components/StopWatch/StopWatch";
 
 const App = () => {
   return (
     <div>
       {/* <Table /> */}
-      <ProgressBar />
+      {/* <ProgressBar /> */}
+      <StopWatch />
     </div>
   );
 };
