@@ -1,9 +1,10 @@
-import Table from "./components/Table/Table";
+import ProgressBar from "./components/ProgressBar/ProgressBar";
 
 const App = () => {
   return (
     <div>
-      <Table />
+      {/* <Table /> */}
+      <ProgressBar />
     </div>
   );
 };
