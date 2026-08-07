@@ -16,8 +16,37 @@ const ProductCard = ({ prod }) => {
   );
 };
 
+const PaginationComp = ({ page, prev, next }) => {
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          value={page}
+          style={{ border: "1px solid black", padding: "10px" }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const PAGE_LIMIT = 5;
+
 const Pagination = () => {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState("1");
+
+  const next = () => {
+    if (Math.floor(products?.length) / PAGE_LIMIT > page) {
+      setPage((p) => p + 1);
+    }
+  };
+
+  const prev = () => {
+    if (page > 0) {
+      setPage((p) => p - 1);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +79,18 @@ const Pagination = () => {
             gap: "5px",
             justifyContent: "center",
           }}>
-          {products.map((prod) => (
-            <ProductCard key={prod.id} prod={prod} />
-          ))}
+          <PaginationComp page={page} prev={prev} next={next} />
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "5px",
+              justifyContent: "center",
+            }}>
+            {products.map((prod) => (
+              <ProductCard key={prod.id} prod={prod} />
+            ))}
+          </div>
         </div>
       ) : (
         <p>Not found</p>
