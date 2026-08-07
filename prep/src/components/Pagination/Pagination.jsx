@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 const ProductCard = ({ prod }) => {
-  return <div style={{ border: "1px solid black", padding: "10px" }}></div>;
+  return (
+    <div
+      style={{
+        border: "1px solid black",
+        padding: "10px",
+        height: "400px",
+        width: "300px",
+      }}>
+      <div>
+        <p>{prod.title}</p>
+      </div>
+    </div>
+  );
 };
 
 const Pagination = () => {
@@ -31,7 +43,13 @@ const Pagination = () => {
   return (
     <div>
       {products.length > 0 ? (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "5px",
+            justifyContent: "center",
+          }}>
           {products.map((prod) => (
             <ProductCard key={prod.id} prod={prod} />
           ))}
