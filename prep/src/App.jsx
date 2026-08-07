@@ -1,3 +1,4 @@
+import Pagination from "./components/Pagination/Pagination";
 import StopWatch from "./components/StopWatch/StopWatch";
 
 const App = () => {
@@ -5,7 +6,8 @@ const App = () => {
     <div>
       {/* <Table /> */}
       {/* <ProgressBar /> */}
-      <StopWatch />
+      {/* <StopWatch /> */}
+      <Pagination />
     </div>
   );
 };
