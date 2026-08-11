@@ -1,5 +1,4 @@
-import AutoComplete from "./components/AutoComplete/AutoComplete";
-import Ex from "./components/Ex/Ex";
+import InfiniteScroll from "./components/InfiniteScroll/InfiniteScroll";
 
 const App = () => {
   return (
@@ -10,7 +9,8 @@ const App = () => {
       {/* <Pagination /> */}
       {/* <Accordion /> */}
       {/* <AutoComplete /> */}
-      <Ex />
+      {/* <Ex /> */}
+      <InfiniteScroll />
     </div>
   );
 };
