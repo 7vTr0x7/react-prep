@@ -1,4 +1,4 @@
-import AutoComplete from "./components/AutoComplete/AutoComplete";
+import Ex from "./components/Ex/Ex";
 
 const App = () => {
   return (
@@ -8,7 +8,8 @@ const App = () => {
       {/* <StopWatch /> */}
       {/* <Pagination /> */}
       {/* <Accordion /> */}
-      <AutoComplete />
+      {/* <AutoComplete /> */}
+      <Ex />
     </div>
   );
 };
