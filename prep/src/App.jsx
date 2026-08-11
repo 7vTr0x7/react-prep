@@ -1,6 +1,4 @@
-import Accordion from "./components/Accordion/Accordion";
-import Pagination from "./components/Pagination/Pagination";
-import StopWatch from "./components/StopWatch/StopWatch";
+import AutoComplete from "./components/AutoComplete/AutoComplete";
 
 const App = () => {
   return (
@@ -9,7 +7,8 @@ const App = () => {
       {/* <ProgressBar /> */}
       {/* <StopWatch /> */}
       {/* <Pagination /> */}
-      <Accordion />
+      {/* <Accordion /> */}
+      <AutoComplete />
     </div>
   );
 };

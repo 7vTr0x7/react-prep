@@ -22,7 +22,11 @@ const AutoComplete = () => {
     fetchData();
   }, []);
 
-  return <div></div>;
+  return (
+    <div style={{ width: "50%", display: "flex", justifyContent: "center" }}>
+      <div style={{ border: "1px solid black" }}></div>
+    </div>
+  );
 };
 
 export default AutoComplete;
