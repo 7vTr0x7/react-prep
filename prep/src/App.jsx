@@ -1,3 +1,4 @@
+import AutoComplete from "./components/AutoComplete/AutoComplete";
 import Ex from "./components/Ex/Ex";
 
 const App = () => {
