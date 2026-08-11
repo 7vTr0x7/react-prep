@@ -14,6 +14,7 @@ const debounce = (fn, d) => {
 const AutoComplete = () => {
   const [data, setData] = useState([]);
   const [text, setText] = useState("");
+  const [debouncedText, setDebouncedText] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,17 +35,23 @@ const AutoComplete = () => {
     fetchData();
   }, []);
 
+  const debounced = useMemo(
+    () => debounce((t) => setDebouncedText(t), 300),
+    [],
+  );
   const textChange = (e) => {
-    setText(e.target.value);
+    let value = e.target.value;
+    setText(value);
+    debounced(value);
   };
 
-  const debounced = debounce(
-    (text) =>
-      data.filter((d) => d.title.toLowerCase().includes(text.toLowerCase())),
-    300,
+  const filteredText = useMemo(
+    () =>
+      data.filter((d) =>
+        d.title.toLowerCase().includes(debouncedText.toLowerCase()),
+      ),
+    [debouncedText],
   );
-
-  const filteredText = useMemo(() => debounced(text), [text]);
 
   console.log(filteredText);
   return (
