@@ -9,7 +9,7 @@ const InfiniteScrollTwo = () => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  const loadingRef = useRef(null);
+  const loaderRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async (page) => {
@@ -21,11 +21,11 @@ const InfiniteScrollTwo = () => {
           }`,
         );
 
-        const result = res.json();
+        const result = await res.json();
         if (result?.products) {
           setData((prev) => [...prev, ...result.products]);
         }
-        if (result.products.length < LIMIT) {
+        if (result?.products?.length < LIMIT) {
           setHasMore(false);
         }
       } catch (error) {
@@ -38,7 +38,26 @@ const InfiniteScrollTwo = () => {
   }, [page]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {});
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+
+        if (entry.isIntersecting && !loading && hasMore) {
+          setPage((prev) => prev + 1);
+        }
+      },
+      {
+        threshold: 0.1,
+      },
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, [loading, hasMore]);
 
   return (
