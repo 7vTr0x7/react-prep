@@ -24,9 +24,18 @@ const Todo = () => {
     }
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (e, id) => {
     setTodo((prev) => prev.filter((p) => p.id !== id));
   };
+  const changeStatus = (e, id) => {
+    setTodo((prev) =>
+      prev.map((p) => p.id === id && { ...p, status: e.target.value }),
+    );
+  };
+
+  
+
+  console.log(todo);
 
   return (
     <div
@@ -84,7 +93,7 @@ const Todo = () => {
                     alignItems: "center",
                     gap: "10px",
                   }}>
-                  <select>
+                  <select onChange={(e) => changeStatus(e, t.id)}>
                     {states.map((s, i) => (
                       <option key={i} value={s}>
                         {s}
