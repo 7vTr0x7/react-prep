@@ -1,4 +1,5 @@
 import InfiniteScrollTwo from "./components/InfiniteScroll2/InfiniteScroll";
+import Todo from "./components/Todo/Todo";
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
       {/* <AutoComplete /> */}
       {/* <Ex /> */}
       {/* <InfiniteScroll /> */}
-      <InfiniteScrollTwo />
+      {/* <InfiniteScrollTwo /> */}
+      <Todo />
     </div>
   );
 };
