@@ -1,4 +1,4 @@
-import InfiniteScroll from "./components/InfiniteScroll/InfiniteScroll";
+import InfiniteScrollTwo from "./components/InfiniteScroll2/InfiniteScroll";
 
 const App = () => {
   return (
@@ -10,7 +10,8 @@ const App = () => {
       {/* <Accordion /> */}
       {/* <AutoComplete /> */}
       {/* <Ex /> */}
-      <InfiniteScroll />
+      {/* <InfiniteScroll /> */}
+      <InfiniteScrollTwo />
     </div>
   );
 };
