@@ -11,6 +11,23 @@ const Todo = () => {
     },
   ]);
 
+  const addTodo = (e) => {
+    if (e.key === "Enter") {
+      setTodo((prev) => [
+        ...prev,
+        {
+          id: new Date().getTime(),
+          title: e.target.value,
+          status: "Pending",
+        },
+      ]);
+    }
+  };
+
+  const deleteTodo = (id) => {
+    setTodo((prev) => prev.filter((p) => p.id !== id));
+  };
+
   return (
     <div
       style={{
@@ -31,13 +48,20 @@ const Todo = () => {
           <input
             type="text"
             placeholder="Add todo"
+            onKeyDown={addTodo}
             style={{
               width: "100%",
               boxSizing: "border-box",
             }}
           />
         </div>
-        <div style={{ padding: "30px 0px" }}>
+        <div
+          style={{
+            padding: "30px 0px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}>
           {todo?.length > 0 ? (
             todo.map((t) => (
               <div
@@ -68,7 +92,11 @@ const Todo = () => {
                     ))}
                   </select>
                   <span style={{ cursor: "pointer" }}>edit</span>
-                  <span style={{ cursor: "pointer" }}>delete</span>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() => deleteTodo(t.id)}>
+                    delete
+                  </span>
                 </div>
               </div>
             ))
