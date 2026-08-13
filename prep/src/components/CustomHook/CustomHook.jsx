@@ -1,8 +1,10 @@
-import { useMemo } from "react";
 import useFetchData from "./useFetchData";
 
 const CustomHook = () => {
-  const [data] = useMemo(() => useFetchData(), []);
+  const [data, loading, error] = useFetchData();
+
+  if (loading) return <p>Loading . . .</p>;
+  if (error) return <p>Error</p>;
   return (
     <div>
       {data.map((d) => (
