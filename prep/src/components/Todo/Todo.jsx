@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import { useState } from "react";
 
 const states = ["Pending", "Complete", "In Progress"];
 
@@ -7,7 +7,7 @@ const Todo = () => {
     {
       id: 1,
       title: "on",
-      status: "p",
+      status: "Pending",
     },
   ]);
 
@@ -24,7 +24,7 @@ const Todo = () => {
     }
   };
 
-  const deleteTodo = (e, id) => {
+  const deleteTodo = (id) => {
     setTodo((prev) => prev.filter((p) => p.id !== id));
   };
   const changeStatus = (e, id) => {
