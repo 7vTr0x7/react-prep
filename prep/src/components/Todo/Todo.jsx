@@ -29,7 +29,7 @@ const Todo = () => {
   };
   const changeStatus = (e, id) => {
     setTodo((prev) =>
-      prev.map((p) => p.id === id && { ...p, status: e.target.value }),
+      prev.map((p) => (p.id === id ? { ...p, status: e.target.value } : p)),
     );
   };
 
