@@ -1,5 +1,4 @@
-import InfiniteScrollTwo from "./components/InfiniteScroll2/InfiniteScroll";
-import Todo from "./components/Todo/Todo";
+import CustomHook from "./components/CustomHook/CustomHook";
 
 const App = () => {
   return (
@@ -13,7 +12,8 @@ const App = () => {
       {/* <Ex /> */}
       {/* <InfiniteScroll /> */}
       {/* <InfiniteScrollTwo /> */}
-      <Todo />
+      {/* <Todo /> */}
+      <CustomHook />
     </div>
   );
 };
