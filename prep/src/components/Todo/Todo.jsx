@@ -3,13 +3,9 @@ import { useState } from "react";
 const states = ["Pending", "Complete", "In Progress"];
 
 const Todo = () => {
-  const [todo, setTodo] = useState([
-    {
-      id: 1,
-      title: "on",
-      status: "Pending",
-    },
-  ]);
+  const [todo, setTodo] = useState([]);
+
+  const [isEdit, setIsEdit] = useState(false);
 
   const addTodo = (e) => {
     if (e.key === "Enter") {
@@ -33,6 +29,9 @@ const Todo = () => {
     );
   };
 
+  const editTodo = (id,e) => {
+    if(e)
+  };
   console.log(todo);
 
   return (
@@ -83,8 +82,23 @@ const Todo = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  gap: "10px",
                 }}>
-                <div>{t.title}</div>
+                <div>
+                  {!isEdit ? (
+                    <span>{t.title}</span>
+                  ) : (
+                    <input
+                      type="text"
+                      placeholder="Edit todo"
+                      onKeyDown={(e) => editTodo(t.id, e.target.value)}
+                      style={{
+                        width: "100%",
+                        boxSizing: "border-box",
+                      }}
+                    />
+                  )}
+                </div>
                 <div
                   style={{
                     display: "flex",
@@ -98,7 +112,11 @@ const Todo = () => {
                       </option>
                     ))}
                   </select>
-                  <span style={{ cursor: "pointer" }}>edit</span>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setIsEdit((prev) => !prev)}>
+                    edit
+                  </span>
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={() => deleteTodo(t.id)}>
