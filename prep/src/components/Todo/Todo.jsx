@@ -5,7 +5,7 @@ const states = ["Pending", "Complete", "In Progress"];
 const Todo = () => {
   const [todo, setTodo] = useState([]);
 
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState("");
 
   const addTodo = (e) => {
     if (e.key === "Enter") {
@@ -29,8 +29,13 @@ const Todo = () => {
     );
   };
 
-  const editTodo = (id,e) => {
-    if(e)
+  const editTodo = (id, e) => {
+    if (e.key === "Enter") {
+      setTodo((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, title: e.target.value } : p)),
+      );
+      setIsEdit("");
+    }
   };
   console.log(todo);
 
@@ -85,13 +90,13 @@ const Todo = () => {
                   gap: "10px",
                 }}>
                 <div>
-                  {!isEdit ? (
+                  {isEdit !== t.id ? (
                     <span>{t.title}</span>
                   ) : (
                     <input
                       type="text"
                       placeholder="Edit todo"
-                      onKeyDown={(e) => editTodo(t.id, e.target.value)}
+                      onKeyDown={(e) => editTodo(t.id, e)}
                       style={{
                         width: "100%",
                         boxSizing: "border-box",
@@ -114,7 +119,7 @@ const Todo = () => {
                   </select>
                   <span
                     style={{ cursor: "pointer" }}
-                    onClick={() => setIsEdit((prev) => !prev)}>
+                    onClick={() => setIsEdit(() => t.id)}>
                     edit
                   </span>
                   <span
