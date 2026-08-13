@@ -33,8 +33,6 @@ const Todo = () => {
     );
   };
 
-  
-
   console.log(todo);
 
   return (
