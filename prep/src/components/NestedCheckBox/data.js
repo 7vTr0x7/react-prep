@@ -3,7 +3,15 @@ export const checkboxData = [
     id: 1,
     name: "Fruits",
     children: [
-      { id: 11, name: "Apple" },
+      {
+        id: 11,
+        name: "Apple",
+        children: [
+          { id: 112, name: "Apple" },
+          { id: 122, name: "Banana" },
+          { id: 133, name: "Orange" },
+        ],
+      },
       { id: 12, name: "Banana" },
       { id: 13, name: "Orange" },
     ],

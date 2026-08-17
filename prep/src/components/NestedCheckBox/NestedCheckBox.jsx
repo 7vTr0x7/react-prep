@@ -2,7 +2,27 @@ import React, { useState } from "react";
 import { checkboxData } from "./data";
 
 const CheckBoxes = React.memo(({ checkboxes, checked, setChecked }) => {
-  console.log("n", checked);
+  const handleChecked = (isChecked, node) => {
+    setChecked((prev) => {
+      let newState = { ...prev, [node.id]: isChecked };
+
+      const updateChild = (node) => {
+        if (node.children) {
+          node.children.forEach((child) => {
+            newState[child.id] = isChecked;
+            if (child.children) {
+              updateChild(child);
+            }
+          });
+        }
+      };
+
+      updateChild(node);
+
+      return newState;
+    });
+  };
+
   return (
     <div>
       {checkboxes.map((c) => (
@@ -13,9 +33,7 @@ const CheckBoxes = React.memo(({ checkboxes, checked, setChecked }) => {
               name={c.id}
               id={c.id}
               checked={checked[c.id] || false}
-              onChange={() =>
-                setChecked((prev) => ({ ...prev, [c.id]: !prev[c.id] }))
-              }
+              onChange={(e) => handleChecked(e.target.checked, c)}
             />
             {c.name}
           </label>
