@@ -1,4 +1,5 @@
 import Guns from "./components/Guns/Guns";
+import OTP from "./components/OTP/OTP";
 
 const App = () => {
   return (
