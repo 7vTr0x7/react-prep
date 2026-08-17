@@ -1,6 +1,3 @@
-import Guns from "./components/Guns/Guns";
-import OTP from "./components/OTP/OTP";
-
 const App = () => {
   return (
     <div>
@@ -16,7 +13,8 @@ const App = () => {
       {/* <Todo /> */}
       {/* <CustomHook /> */}
       {/* <Guns /> */}
-      <OTP />
+      {/* <OTP /> */}
+      <NestedCheckBoxP />
     </div>
   );
 };
