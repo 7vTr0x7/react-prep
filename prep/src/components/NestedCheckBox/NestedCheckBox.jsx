@@ -7,7 +7,7 @@ const CheckBoxes = React.memo(({ checkboxes, checked, setChecked }) => {
       let newState = { ...prev, [node.id]: isChecked };
 
       const updateChild = (node) => {
-        node?.children?.forEach((child) => {
+        node.children.forEach((child) => {
           newState[child.id] = isChecked;
           if (child.children) {
             updateChild(child);
@@ -15,7 +15,18 @@ const CheckBoxes = React.memo(({ checkboxes, checked, setChecked }) => {
         });
       };
 
-      updateChild(node);
+      if (node.children) {
+        updateChild(node);
+      }
+
+      const verifyChecked = (node) => {
+        if (!node.children) return newState[node.id] || false;
+        const allchecked = node.children.every((child) => verifyChecked(child));
+        newState[node.id] = allchecked;
+        return allchecked;
+      };
+
+      checkboxData.forEach((node) => verifyChecked(node));
 
       return newState;
     });
