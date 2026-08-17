@@ -1,4 +1,4 @@
-import CustomHook from "./components/CustomHook/CustomHook";
+import Guns from "./components/Guns/Guns";
 
 const App = () => {
   return (
@@ -13,7 +13,8 @@ const App = () => {
       {/* <InfiniteScroll /> */}
       {/* <InfiniteScrollTwo /> */}
       {/* <Todo /> */}
-      <CustomHook />
+      {/* <CustomHook /> */}
+      <Guns />
     </div>
   );
 };
