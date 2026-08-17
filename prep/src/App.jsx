@@ -1,3 +1,5 @@
+import NestedCheckBox from "./components/NestedCheckBox/NestedCheckBox";
+
 const App = () => {
   return (
     <div>
@@ -14,7 +16,7 @@ const App = () => {
       {/* <CustomHook /> */}
       {/* <Guns /> */}
       {/* <OTP /> */}
-      <NestedCheckBoxP />
+      <NestedCheckBox />
     </div>
   );
 };
