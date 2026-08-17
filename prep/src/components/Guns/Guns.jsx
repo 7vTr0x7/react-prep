@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 const NormalGun = React.memo(({ normalGun, setNormalGun }) => {
   return (
@@ -72,15 +72,15 @@ const Guns = () => {
   const [debouncedGun, setDebouncedGun] = useState(0);
   const [throttledGun, setThrottledGun] = useState(0);
 
-  const onDebounce = () => {
+  const onDebounce = useCallback(() => {
     setDebouncedGun((prev) => prev + 1);
-  };
-  const onThrottle = () => {
+  }, []);
+  const onThrottle = useCallback(() => {
     setThrottledGun((prev) => prev + 1);
-  };
+  }, []);
 
-  const debouncedFunc = useMemo(() => debounce(onDebounce, 300), []);
-  const throttleFun = useMemo(() => throttle(onThrottle, 2000), []);
+  const debouncedFunc = useMemo(() => debounce(onDebounce, 300), [onDebounce]);
+  const throttleFun = useMemo(() => throttle(onThrottle, 2000), [onThrottle]);
 
   return (
     <div
