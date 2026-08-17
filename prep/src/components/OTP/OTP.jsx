@@ -16,7 +16,7 @@ const OTP = () => {
   };
 
   const back = (e, i) => {
-    if (e.key === "Backspace") {
+    if (!e.target.value && e.key === "Backspace") {
       dRef.current[i - 1]?.focus();
     }
   };
