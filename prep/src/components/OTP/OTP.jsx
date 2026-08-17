@@ -19,6 +19,20 @@ const OTP = () => {
     if (!e.target.value && e.key === "Backspace") {
       dRef.current[i - 1]?.focus();
     }
+    if (e.key === "ArrowRight") {
+      if (i + 1 === digits.length) {
+        dRef.current[0]?.focus();
+      } else {
+        dRef.current[i + 1]?.focus();
+      }
+    }
+    if (e.key === "ArrowLeft") {
+      if (i === 0) {
+        dRef.current[digits.length - 1]?.focus();
+      } else {
+        dRef.current[i - 1]?.focus();
+      }
+    }
   };
 
   useEffect(() => {
