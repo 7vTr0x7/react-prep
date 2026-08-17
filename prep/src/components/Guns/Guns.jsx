@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 const NormalGun = React.memo(({ normalGun, setNormalGun }) => {
   return (
@@ -14,7 +14,7 @@ const NormalGun = React.memo(({ normalGun, setNormalGun }) => {
     </div>
   );
 });
-const DebouncedGun = React.memo(({ debouncedGun, setDebouncedGun }) => {
+const DebouncedGun = React.memo(({ debouncedGun, debouncedFunc }) => {
   console.log("Debounced");
   return (
     <div
@@ -24,7 +24,7 @@ const DebouncedGun = React.memo(({ debouncedGun, setDebouncedGun }) => {
         alignItems: "center",
         justifyContent: "space-between",
       }}>
-      <button>Debounced</button>
+      <button onClick={debouncedFunc}>Debounced</button>
       <span>{debouncedGun}</span>
     </div>
   );
@@ -46,10 +46,29 @@ const ThrottledGun = React.memo(({ throttledGun, setThrottledGun }) => {
   );
 });
 
+const debounce = (fn, d) => {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn(...args);
+    }, d);
+  };
+};
+
 const Guns = () => {
   const [normalGun, setNormalGun] = useState(0);
   const [debouncedGun, setDebouncedGun] = useState(0);
   const [throttledGun, setThrottledGun] = useState(0);
+
+  const onDebounce = () => {
+    setDebouncedGun((prev) => prev + 1);
+  };
+
+  const debouncedFunc = useMemo(
+    () => debounce(onDebounce, 300),
+    [debouncedGun],
+  );
 
   return (
     <div
@@ -60,10 +79,7 @@ const Guns = () => {
         gap: "20px",
       }}>
       <NormalGun normalGun={normalGun} setNormalGun={setNormalGun} />
-      <DebouncedGun
-        debouncedGun={debouncedGun}
-        setDebouncedGun={setDebouncedGun}
-      />
+      <DebouncedGun debouncedGun={debouncedGun} debouncedFunc={debouncedFunc} />
       <ThrottledGun
         throttledGun={throttledGun}
         setThrottledGun={setThrottledGun}
