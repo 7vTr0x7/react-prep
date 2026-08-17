@@ -14,7 +14,8 @@ const App = () => {
       {/* <InfiniteScrollTwo /> */}
       {/* <Todo /> */}
       {/* <CustomHook /> */}
-      <Guns />
+      {/* <Guns /> */}
+      <OTP />
     </div>
   );
 };
