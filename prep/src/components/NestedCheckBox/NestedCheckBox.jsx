@@ -7,14 +7,12 @@ const CheckBoxes = React.memo(({ checkboxes, checked, setChecked }) => {
       let newState = { ...prev, [node.id]: isChecked };
 
       const updateChild = (node) => {
-        if (node.children) {
-          node.children.forEach((child) => {
-            newState[child.id] = isChecked;
-            if (child.children) {
-              updateChild(child);
-            }
-          });
-        }
+        node?.children?.forEach((child) => {
+          newState[child.id] = isChecked;
+          if (child.children) {
+            updateChild(child);
+          }
+        });
       };
 
       updateChild(node);
