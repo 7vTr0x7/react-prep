@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const NormalGun = ({ normalGun, setNormalGun }) => {
+const NormalGun = React.memo(({ normalGun, setNormalGun }) => {
   return (
     <div
       style={{
@@ -13,8 +13,8 @@ const NormalGun = ({ normalGun, setNormalGun }) => {
       <span>{normalGun}</span>
     </div>
   );
-};
-const DebouncedGun = ({ debouncedGun, setDebouncedGun }) => {
+});
+const DebouncedGun = React.memo(({ debouncedGun, setDebouncedGun }) => {
   console.log("Debounced");
   return (
     <div
@@ -28,8 +28,8 @@ const DebouncedGun = ({ debouncedGun, setDebouncedGun }) => {
       <span>{debouncedGun}</span>
     </div>
   );
-};
-const ThrottledGun = ({ throttledGun, setThrottledGun }) => {
+});
+const ThrottledGun = React.memo(({ throttledGun, setThrottledGun }) => {
   console.log("throttle");
 
   return (
@@ -44,7 +44,7 @@ const ThrottledGun = ({ throttledGun, setThrottledGun }) => {
       <span>{throttledGun}</span>
     </div>
   );
-};
+});
 
 const Guns = () => {
   const [normalGun, setNormalGun] = useState(0);
