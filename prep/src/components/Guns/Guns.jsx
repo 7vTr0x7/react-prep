@@ -15,6 +15,7 @@ const NormalGun = ({ normalGun, setNormalGun }) => {
   );
 };
 const DebouncedGun = ({ debouncedGun, setDebouncedGun }) => {
+  console.log("Debounced");
   return (
     <div
       style={{
@@ -29,6 +30,8 @@ const DebouncedGun = ({ debouncedGun, setDebouncedGun }) => {
   );
 };
 const ThrottledGun = ({ throttledGun, setThrottledGun }) => {
+  console.log("throttle");
+
   return (
     <div
       style={{
@@ -60,6 +63,10 @@ const Guns = () => {
       <DebouncedGun
         debouncedGun={debouncedGun}
         setDebouncedGun={setDebouncedGun}
+      />
+      <ThrottledGun
+        throttledGun={throttledGun}
+        setThrottledGun={setThrottledGun}
       />
     </div>
   );
