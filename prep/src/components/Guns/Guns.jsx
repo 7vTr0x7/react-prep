@@ -14,6 +14,34 @@ const NormalGun = ({ normalGun, setNormalGun }) => {
     </div>
   );
 };
+const DebouncedGun = ({ debouncedGun, setDebouncedGun }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}>
+      <button>Debounced</button>
+      <span>{debouncedGun}</span>
+    </div>
+  );
+};
+const ThrottledGun = ({ throttledGun, setThrottledGun }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}>
+      <button>Throttled</button>
+      <span>{throttledGun}</span>
+    </div>
+  );
+};
 
 const Guns = () => {
   const [normalGun, setNormalGun] = useState(0);
@@ -29,26 +57,10 @@ const Guns = () => {
         gap: "20px",
       }}>
       <NormalGun normalGun={normalGun} setNormalGun={setNormalGun} />
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}>
-        <button>Debounced</button>
-        <span>{debouncedGun}</span>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}>
-        <button>Throttled</button>
-        <span>{throttledGun}</span>
-      </div>
+      <DebouncedGun
+        debouncedGun={debouncedGun}
+        setDebouncedGun={setDebouncedGun}
+      />
     </div>
   );
 };
