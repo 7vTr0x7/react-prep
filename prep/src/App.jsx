@@ -1,3 +1,4 @@
+import FileFolder from "./components/FileFolder/FileFolder";
 import NestedCheckBox from "./components/NestedCheckBox/NestedCheckBox";
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
       {/* <CustomHook /> */}
       {/* <Guns /> */}
       {/* <OTP /> */}
-      <NestedCheckBox />
+      {/* <NestedCheckBox /> */}
+      <FileFolder />
     </div>
   );
 };
