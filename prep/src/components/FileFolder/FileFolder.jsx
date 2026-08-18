@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { dataFiles } from "./data";
 
 const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
-  const addFile = (node) => {
+  const addFile = (parent) => {
     const name = prompt("Enter name");
 
     if (!name.trim()) return;
@@ -13,7 +13,7 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
       isFolder: false,
     };
 
-    const exits = node?.children.find(
+    const exits = parent?.children.find(
       (f) => f.name.toLowerCase() === name.toLowerCase(),
     );
 
@@ -22,11 +22,27 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
       return;
     }
 
-    setFiles((p) =>
-      p.map((f) =>
-        f.id === node.id ? { ...f, children: [...f.children, newFile] } : f,
-      ),
-    );
+    const updateTree = (nodes) => {
+      return nodes.map((node) => {
+        if (node.id === parent.id) {
+          return {
+            ...node,
+            children: [...node.children, newFile],
+          };
+        }
+
+        if (node?.children) {
+          return {
+            ...node,
+            children: updateTree(node.children),
+          };
+        }
+
+        return node;
+      });
+    };
+
+    setFiles((p) => updateTree(p));
   };
 
   return (
