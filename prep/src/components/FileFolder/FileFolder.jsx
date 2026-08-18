@@ -4,7 +4,9 @@ import { dataFiles } from "./data";
 const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
   const addFile = (node) => {
     const name = prompt("Enter name");
+
     if (!name.trim()) return;
+
     const newFile = {
       id: new Date().getTime(),
       name,
@@ -14,6 +16,7 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
     const exits = node?.children.find(
       (f) => f.name.toLowerCase() === name.toLowerCase(),
     );
+
     if (exits?.id) {
       alert("file already exists");
       return;
