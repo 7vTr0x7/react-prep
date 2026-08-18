@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import { dataFiles } from "./data";
 
-const Files = ({ files, isOpen, setIsOpen }) => {
+const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
+  const addFile = (node) => {
+    const name = prompt("Enter name");
+    if (!name.trim()) return;
+    const newFile = {
+      id: new Date().getTime(),
+      name,
+      isFolder: false,
+    };
+
+    const exits = node?.children.some(
+      (f) => f.name.toLowerCase() === name.toLowerCase(),
+    );
+    if (exits) {
+      alert("file already exists");
+      return;
+    }
+
+    setFiles((p) =>
+      p.map((f) =>
+        f.id === node.id ? { ...f, children: [...f.children, newFile] } : f,
+      ),
+    );
+  };
+
   return (
     <div>
       {files.map((node) => (
@@ -20,7 +44,11 @@ const Files = ({ files, isOpen, setIsOpen }) => {
             {node.isFolder && (
               <>
                 <span style={{ cursor: "pointer" }}>{"📂"}</span>
-                <span style={{ cursor: "pointer" }}>{"📄"}</span>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => addFile(node)}>
+                  {"📄"}
+                </span>
               </>
             )}
           </div>
@@ -28,6 +56,7 @@ const Files = ({ files, isOpen, setIsOpen }) => {
             {node.children && isOpen[node.id] && (
               <Files
                 files={node.children}
+                setFiles={setFiles}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
               />
@@ -45,7 +74,12 @@ const FileFolder = () => {
 
   return (
     <div>
-      <Files files={files} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Files
+        files={files}
+        isOpen={isOpen}
+        setFiles={setFiles}
+        setIsOpen={setIsOpen}
+      />
     </div>
   );
 };
