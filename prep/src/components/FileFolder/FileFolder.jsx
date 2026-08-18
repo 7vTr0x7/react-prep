@@ -116,6 +116,9 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
                 </span>
               </>
             )}
+            <span style={{ cursor: "pointer" }} onClick={() => addFile(node)}>
+              {"❌"}
+            </span>
           </div>
           <div style={{ padding: "0px 20px" }}>
             {node.children && isOpen[node.id] && (
