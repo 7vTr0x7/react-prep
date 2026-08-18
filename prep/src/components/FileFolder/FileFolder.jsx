@@ -87,6 +87,25 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
     setFiles((prev) => updateTree(prev));
   };
 
+  const deleteFile = (parent) => {
+    const updateTree = (nodes) => {
+      return nodes
+        .filter((node) => node.id !== parent.id)
+        .map((node) => {
+          if (node.children) {
+            return {
+              ...node,
+              children: updateTree(node.children),
+            };
+          }
+
+          return node;
+        });
+    };
+
+    setFiles((prev) => updateTree(prev));
+  };
+
   return (
     <div>
       {files.map((node) => (
@@ -116,7 +135,9 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
                 </span>
               </>
             )}
-            <span style={{ cursor: "pointer" }} onClick={() => addFile(node)}>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => deleteFile(node)}>
               {"❌"}
             </span>
           </div>
