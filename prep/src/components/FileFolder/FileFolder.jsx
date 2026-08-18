@@ -73,16 +73,14 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
             ...node,
             children: [...node.children, newFolder],
           };
-
-          if (node?.children) {
-            return {
-              ...node,
-              children: updateTree(node.children),
-            };
-          }
-
-          return node;
         }
+        if (node?.children) {
+          return {
+            ...node,
+            children: updateTree(node.children),
+          };
+        }
+        return node;
       });
     };
 
