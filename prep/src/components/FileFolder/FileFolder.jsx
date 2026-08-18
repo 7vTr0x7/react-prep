@@ -45,6 +45,50 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
     setFiles((p) => updateTree(p));
   };
 
+  const addFolder = (parent) => {
+    const name = prompt("enter name");
+
+    if (!name.trim()) return;
+
+    const exists = parent.children.find(
+      (node) => node.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (exists?.id) {
+      alert("Already exists");
+      return;
+    }
+
+    let newFolder = {
+      id: new Date().getTime(),
+      name,
+      isFolder: true,
+      children: [],
+    };
+
+    const updateTree = (nodes) => {
+      return nodes.map((node) => {
+        if (node.id === parent.id) {
+          return {
+            ...node,
+            children: [...node.children, newFolder],
+          };
+
+          if (node?.children) {
+            return {
+              ...node,
+              children: updateTree(node.children),
+            };
+          }
+
+          return node;
+        }
+      });
+    };
+
+    setFiles((prev) => updateTree(prev));
+  };
+
   return (
     <div>
       {files.map((node) => (
@@ -60,9 +104,13 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
               </span>
             )}
             <span>{node.name}</span>
-            {node.isFolder && (
+            {node?.isFolder && (
               <>
-                <span style={{ cursor: "pointer" }}>{"📂"}</span>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => addFolder(node)}>
+                  {"📂"}
+                </span>
                 <span
                   style={{ cursor: "pointer" }}
                   onClick={() => addFile(node)}>
