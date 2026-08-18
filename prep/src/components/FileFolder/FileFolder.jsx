@@ -11,10 +11,10 @@ const Files = ({ files, isOpen, setIsOpen, setFiles }) => {
       isFolder: false,
     };
 
-    const exits = node?.children.some(
+    const exits = node?.children.find(
       (f) => f.name.toLowerCase() === name.toLowerCase(),
     );
-    if (exits) {
+    if (exits?.id) {
       alert("file already exists");
       return;
     }
